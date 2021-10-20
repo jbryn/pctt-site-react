@@ -1,0 +1,44 @@
+@import "./Nav";
+@import "./Tracklist";
+@import "./Player";
+@import "./Disc";
+
+@font-face {
+  font-family: "cajamedium";
+  src: url("../fonts/caja-webfont.woff2") format("woff2"),
+    url("../fonts/caja-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-size: 200px;
+  font-family: "cajamedium", Arial, sans-serif;
+}
+
+.shifted {
+  transform: translateX(12rem);
+}
+
+.shiftedPlayer {
+  transform: translateX(500px);
+}
+
+.shifted-tracklist {
+  transform: translateX(0);
+}

@@ -1,0 +1,54 @@
+@import "./variables";
+
+.player-container {
+  position: relative;
+  display: flex;
+  // height: 100%;
+  background-color: black;
+
+  .mouseXY {
+    margin: 15px;
+    // height: 50px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+  }
+}
+
+.icon {
+  // margin-top: 10px;
+  // margin-left: 10px;
+  padding-top: 30px;
+  padding-left: 35px;
+}
+
+.player {
+  position: absolute;
+  bottom: 0px;
+  height: 100px;
+  width: 100%;
+  border-top: $border;
+  background: black;
+  transition: all 0.2s ease;
+  display: flex;
+  .play-btn {
+    width: 10%;
+    height: 100%;
+    left: 0;
+    border-right: $border;
+  }
+  .spectrum {
+    position: absolute;
+    right: 0px;
+    width: 90%;
+    height: 100%;
+    // background: blue;
+  }
+}
+
+// @media (min-width: 768px) and (max-width: 1000px) {
+//   .disc {
+//     width: 30%;
+//     margin-left: 40%;
+//   }
+// }

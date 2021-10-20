@@ -1,0 +1,9 @@
+$dark: #212529;
+$bg: black;
+$border: 2px solid white;
+
+@mixin flexColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
