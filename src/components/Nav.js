@@ -1,19 +1,13 @@
 const Nav = ({ tracklistStatus, setTracklistStatus }) => {
   return (
     <nav className="nav">
-      <div className="logo">
-        {/* <Image alt="pctt" src="/pctt_logo.png" layout="fill" /> */}
+      <img alt="logo" src={"./pcct.png"}></img>
+      <div className="menu-items">
+        <div className="menu-item">tracks</div>
+        <div className="menu-item">gallery</div>
       </div>
-      <div className="menu">
-        <h1
-          onClick={() => {
-            setTracklistStatus(!tracklistStatus);
-            console.log(tracklistStatus);
-          }}
-        >
-          tracks
-        </h1>
-      </div>
+
+      {/* <h1>tracks</h1> */}
     </nav>
   );
 };

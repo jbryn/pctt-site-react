@@ -1,66 +1,36 @@
 nav {
   position: relative;
-  min-height: 100px;
-  height: 150px;
+  height: 130px;
   display: flex;
+  justify-content: space-between;
   background-color: black;
-  border-bottom: 2px solid white;
+  // border-bottom: 2px solid white;
 
-  .temp-btn {
-    position: absolute;
-    top: 31%;
-    left: 120%;
-    width: 100px;
-    height: 20px;
-    margin: 10px;
-    background: black;
+  img {
+    width: 150px;
+    height: 112px;
+    margin: 35px;
   }
-}
 
-.logo {
-  position: relative;
-  width: 472px;
-  height: 150px;
-  // border-right: 2px solid white;
-}
+  .menu-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    .menu-item {
+      width: 50%;
+      height: 35px;
+      margin: 90px 60px;
+      // border-radius: 10px;
+      // text-align: center;
+      vertical-align: middle;
+      font-size: 39px;
+      transition: 100ms ease-out;
 
-.menu {
-  margin: 0;
-  position: relative;
-  display: flex;
-  top: 10%;
-  left: 5%;
-  h1 {
-    font-size: 44px;
-    &:hover {
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .nav {
-    height: 100px;
-  }
-  .logo {
-    // margin: 0 auto;
-    height: 100px;
-    width: 315px;
-    border-right: none;
-  }
-  .menu {
-    margin: 0 auto;
-    top: -10%;
-  }
-}
-
-@media (min-width: 450px) and (max-width: 768px) {
-  .menu {
-    top: 10%;
-    left: 0;
-    h1 {
-      font-size: 30px;
+      &:hover {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+      }
     }
   }
 }
