@@ -26,10 +26,16 @@ body {
   margin: 0;
   padding: 0;
   height: 100rem;
+  width: 100vw;
   background-color: black;
   color: white;
-  font-size: 200px;
   font-family: "cajamedium", Arial, sans-serif;
+  p {
+    font-size: 80px;
+    color: gray;
+    overflow: hidden;
+    line-height: 50px;
+  }
 }
 
 .shifted {

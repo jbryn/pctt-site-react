@@ -1,39 +1,50 @@
-import { useEffect, useState } from "react";
-import { request } from "graphql-request";
+import { useEffect, useRef, useState } from "react";
+import { GrPause, GrPlay } from "react-icons/gr";
+import { IoPlayOutline } from "react-icons/io5";
+import { TiMediaPauseOutline } from "react-icons/ti";
+import { IconContext } from "react-icons";
 
-const Player = ({}) => {
-  const [tracks, setTracks] = useState(null);
+const CustomIcon = ({ icon }) => {
+  return (
+    <IconContext.Provider
+      value={{ color: "white", size: "30px", style: { margin: "10px" } }}
+    >
+      <div>{icon}</div>
+    </IconContext.Provider>
+  );
+};
 
-  useEffect(() => {
-    const fetchTracks = async () => {
-      const { tracks } = await request(
-        "https://api-eu-central-1.graphcms.com/v2/ckto93z5j0yi101yz5wksgk09/master",
-        `
-              {
-          tracks {
-            id
-            title
-            cover {
-              url
-            }
-            author
-            audio {
-              url
-            }
-          }
-        }
-    `
-      );
-      setTracks(tracks);
-    };
-    fetchTracks();
-  }, []);
-
+const Player = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  return <div></div>;
+  const { title, cover, author, audio } = tracks[trackIndex];
+  const audioRef = useRef(new Audio(audio.url));
+  const intervalRef = useRef();
+  const isReady = useRef(false);
+
+  const { duration } = audioRef.current;
+
+  const toPrevTrack = () => {
+    console.log("TODO go to prev");
+  };
+
+  const toNextTrack = () => {
+    console.log("TODO go to next");
+  };
+
+  return (
+    <div className="player">
+      <div className="track-info">
+        <CustomIcon icon={<IoPlayOutline />} />
+        <CustomIcon icon={<TiMediaPauseOutline />} />
+        <img className="cover" src={cover.url} alt="track cover" />
+        <h2 className="title">{title}</h2>
+        <h2 className="author">{author}</h2>
+      </div>
+    </div>
+  );
 };
 
 export default Player;
