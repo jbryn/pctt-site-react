@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import Player from "./components/Player";
 import { useEffect, useState } from "react";
 import { request } from "graphql-request";
+// require("dotenv").config();
 
 function App() {
   const [offSetY, setOffsetY] = useState(0);
@@ -13,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchTracks = async () => {
       const { tracks } = await request(
-        "https://api-eu-central-1.graphcms.com/v2/ckto93z5j0yi101yz5wksgk09/master",
+        process.env.REACT_APP_API_ENDPOINT,
         `
               {
           tracks {
