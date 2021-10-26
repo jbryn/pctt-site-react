@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { GrPause, GrPlay } from "react-icons/gr";
 import { IoPlayOutline } from "react-icons/io5";
 import {
   TiMediaPauseOutline,
@@ -20,12 +19,43 @@ const Player = ({ tracks }) => {
 
   const { duration } = audioRef.current;
 
+  useEffect(() => {
+    isPlaying ? audioRef.current.play() : audioRef.current.pause();
+  }, [isPlaying]);
+
+  useEffect(() => {
+    audioRef.current.pause();
+
+    audioRef.current = new Audio(audio.url);
+    setTrackProgress(audioRef.current.currentTime);
+
+    if (isReady.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+      // startTimer();
+    } else {
+      // Set the isReady ref as true for the next pass
+      isReady.current = true;
+    }
+  }, [trackIndex]);
+
+  useEffect(() => {
+    return () => {
+      audioRef.current.pause();
+      clearInterval(intervalRef.current);
+    };
+  }, []);
+
   const toPrevTrack = () => {
-    console.log("TODO go to prev");
+    trackIndex - 1 < 0
+      ? setTrackIndex(tracks.length - 1)
+      : setTrackIndex(trackIndex - 1);
   };
 
   const toNextTrack = () => {
-    console.log("TODO go to next");
+    trackIndex < tracks.length - 1
+      ? setTrackIndex(trackIndex + 1)
+      : setTrackIndex(0);
   };
 
   const PlayPauseButton = ({ icon, playing }) => {
@@ -35,7 +65,11 @@ const Player = ({ tracks }) => {
         aria-label={playing ? "Play" : "Pause"}
       >
         <IconContext.Provider
-          value={{ color: "white", size: "30px", style: { margin: "10px" } }}
+          value={{
+            color: "white",
+            size: "30px",
+            style: { margin: "10px", cursor: "pointer" },
+          }}
         >
           <div>{icon}</div>
         </IconContext.Provider>
@@ -46,13 +80,21 @@ const Player = ({ tracks }) => {
   return (
     <div className="player">
       <div className="track-info">
-        <TiMediaRewindOutline size="30px" style={{ margin: "10px" }} />
+        <TiMediaRewindOutline
+          size="30px"
+          style={{ margin: "10px", cursor: "pointer" }}
+          onClick={toPrevTrack}
+        />
         {isPlaying ? (
           <PlayPauseButton icon={<TiMediaPauseOutline />} playing={false} />
         ) : (
           <PlayPauseButton icon={<IoPlayOutline />} playing={true} />
         )}
-        <TiMediaFastForwardOutline size="30px" style={{ margin: "10px" }} />
+        <TiMediaFastForwardOutline
+          size="30px"
+          style={{ margin: "10px", cursor: "pointer" }}
+          onClick={toNextTrack}
+        />
 
         <h2 className="title">{title}</h2>
         <h2 className="author">{author}</h2>
