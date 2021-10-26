@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { IoPlayOutline } from "react-icons/io5";
-import {
-  TiMediaPauseOutline,
-  TiMediaFastForwardOutline,
-  TiMediaRewindOutline,
-} from "react-icons/ti";
-import { IconContext } from "react-icons";
+import PlayerControls from "./PlayerControls";
 
 const Player = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
@@ -58,44 +52,15 @@ const Player = ({ tracks }) => {
       : setTrackIndex(0);
   };
 
-  const PlayPauseButton = ({ icon, playing }) => {
-    return (
-      <div
-        onClick={() => setIsPlaying(playing)}
-        aria-label={playing ? "Play" : "Pause"}
-      >
-        <IconContext.Provider
-          value={{
-            color: "white",
-            size: "30px",
-            style: { margin: "10px", cursor: "pointer" },
-          }}
-        >
-          <div>{icon}</div>
-        </IconContext.Provider>
-      </div>
-    );
-  };
-
   return (
     <div className="player">
       <div className="track-info">
-        <TiMediaRewindOutline
-          size="30px"
-          style={{ margin: "10px", cursor: "pointer" }}
-          onClick={toPrevTrack}
+        <PlayerControls
+          isPlaying={isPlaying}
+          onPlayPauseClick={setIsPlaying}
+          onPrevClick={toPrevTrack}
+          onNextClick={toNextTrack}
         />
-        {isPlaying ? (
-          <PlayPauseButton icon={<TiMediaPauseOutline />} playing={false} />
-        ) : (
-          <PlayPauseButton icon={<IoPlayOutline />} playing={true} />
-        )}
-        <TiMediaFastForwardOutline
-          size="30px"
-          style={{ margin: "10px", cursor: "pointer" }}
-          onClick={toNextTrack}
-        />
-
         <h2 className="title">{title}</h2>
         <h2 className="author">{author}</h2>
         <img className="cover" src={cover.url} alt="track cover" />
