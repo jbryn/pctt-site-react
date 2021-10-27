@@ -41,9 +41,9 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    console.log(offSetY);
-  }, [offSetY]);
+  // useEffect(() => {
+  //   console.log(offSetY);
+  // }, [offSetY]);
 
   return (
     <div className="app">

@@ -4,6 +4,7 @@ import PlayerControls from "./PlayerControls";
 const Player = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
+  const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
   const { title, cover, author, audio } = tracks[trackIndex];
   const audioRef = useRef(new Audio(audio.url));
@@ -81,6 +82,10 @@ const Player = ({ tracks }) => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log(volume);
+  }, [volume]);
+
   return (
     <div className="player">
       <div className="track-info">
@@ -90,6 +95,7 @@ const Player = ({ tracks }) => {
           onPrevClick={toPrevTrack}
           onNextClick={toNextTrack}
         />
+
         <input
           type="range"
           value={trackProgress}
@@ -100,10 +106,24 @@ const Player = ({ tracks }) => {
           onChange={(e) => onScrub(e.target.value)}
           onMouseUp={onScrubEnd}
           onKeyUp={onScrubEnd}
+          // style={{ background: "red" }}
         />
+
         <h2 className="title">{title}</h2>
         <h2 className="author">{author}</h2>
         <img className="cover" src={cover.url} alt="track cover" />
+        <input
+          type="range"
+          value={volume}
+          step="0.01"
+          min="0"
+          max="1"
+          className="volume"
+          onChange={(e) => {
+            setVolume(e.target.value);
+            audioRef.current.volume = e.target.value;
+          }}
+        />
       </div>
     </div>
   );

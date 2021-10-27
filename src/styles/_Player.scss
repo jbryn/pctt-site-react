@@ -10,6 +10,7 @@
   .track-info {
     display: flex;
     justify-content: flex-start;
+    vertical-align: middle;
     h2 {
       margin-inline: 20px;
       margin-bottom: 20px;
@@ -18,6 +19,9 @@
       width: 50px;
       height: 50px;
       // aspect-ratio: 1;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      background: #ff2e2e;
     }
   }
 }
