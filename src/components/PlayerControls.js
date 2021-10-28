@@ -12,7 +12,7 @@ const PlayPauseButton = ({ icon }) => {
       value={{
         color: "white",
         size: "30px",
-        style: { margin: "10px", cursor: "pointer" },
+        style: { cursor: "pointer" },
       }}
     >
       <div>{icon}</div>
@@ -27,10 +27,10 @@ const PlayerControls = ({
   onNextClick,
 }) => {
   return (
-    <>
+    <div className="center" style={{ display: "flex" }}>
       <TiMediaRewindOutline
         size="30px"
-        style={{ margin: "10px", cursor: "pointer" }}
+        style={{ cursor: "pointer" }}
         onClick={onPrevClick}
       />
       {isPlaying ? (
@@ -44,10 +44,10 @@ const PlayerControls = ({
       )}
       <TiMediaFastForwardOutline
         size="30px"
-        style={{ margin: "10px", cursor: "pointer" }}
+        style={{ cursor: "pointer" }}
         onClick={onNextClick}
       />
-    </>
+    </div>
   );
 };
 

@@ -89,30 +89,36 @@ const Player = ({ tracks }) => {
   return (
     <div className="player">
       <div className="track-info">
-        <PlayerControls
-          isPlaying={isPlaying}
-          onPlayPauseClick={setIsPlaying}
-          onPrevClick={toPrevTrack}
-          onNextClick={toNextTrack}
-        />
+        <div className="controls">
+          <PlayerControls
+            isPlaying={isPlaying}
+            onPlayPauseClick={setIsPlaying}
+            onPrevClick={toPrevTrack}
+            onNextClick={toNextTrack}
+          />
+        </div>
+        <div className="progress-container">
+          <input
+            type="range"
+            value={trackProgress}
+            step="1"
+            min="0"
+            max={duration ? duration : `${duration}`}
+            className="progress center"
+            onChange={(e) => onScrub(e.target.value)}
+            onMouseUp={onScrubEnd}
+            onKeyUp={onScrubEnd}
+          />
+        </div>
+        <div className="info">
+          <img className="cover" src={cover.url} alt="track cover" />
+          <div className="labels">
+            {/* <h2 className="title">{title}</h2>
+            <h2 className="author">{author}</h2> */}
+          </div>
+        </div>
 
-        <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max={duration ? duration : `${duration}`}
-          className="progress"
-          onChange={(e) => onScrub(e.target.value)}
-          onMouseUp={onScrubEnd}
-          onKeyUp={onScrubEnd}
-          // style={{ background: "red" }}
-        />
-
-        <h2 className="title">{title}</h2>
-        <h2 className="author">{author}</h2>
-        <img className="cover" src={cover.url} alt="track cover" />
-        <input
+        {/* <input
           type="range"
           value={volume}
           step="0.01"
@@ -123,7 +129,7 @@ const Player = ({ tracks }) => {
             setVolume(e.target.value);
             audioRef.current.volume = e.target.value;
           }}
-        />
+        /> */}
       </div>
     </div>
   );

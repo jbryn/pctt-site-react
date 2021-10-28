@@ -31,11 +31,43 @@ body {
   color: white;
   font-family: "cajamedium", Arial, sans-serif;
   p {
+    // position: absolute;
+    z-index: -100;
     font-size: 80px;
     color: gray;
     overflow: hidden;
     line-height: 50px;
   }
+  .covers {
+    position: absolute;
+    width: 50%;
+    height: 100vh;
+    top: 300px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    .cover {
+      // width: 150px;
+      // height: 150px;
+      margin: 20px;
+      img {
+        max-width: 200px;
+        max-height: 200px;
+      }
+    }
+  }
+  .garbage {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .shifted {

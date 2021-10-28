@@ -49,7 +49,22 @@ function App() {
     <div className="app">
       <Nav />
       {tracks && <Player tracks={tracks} />}
-      <p>{JSON.stringify(tracks)}</p>
+      <div
+        className="background"
+        style={{ transform: `translateY(${offSetY * 0.5}px)` }}
+      >
+        <p>{JSON.stringify(tracks)}</p>
+      </div>
+      {/* <section className="covers">
+        {tracks.map((track) => {
+          return (
+            <div className="cover">
+              <img alt={track.title} src={track.cover.url} />
+            </div>
+          );
+        })}
+      </section> */}
+      <img className="garbage" alt="garbage" src={"./bd_sie_krecic.png"} />
     </div>
   );
 }
