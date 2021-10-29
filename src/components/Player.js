@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import PlayerControls from "./PlayerControls";
+import { IoVolumeHighSharp } from "react-icons/io5";
 
 const Player = ({ tracks }) => {
   const [trackIndex, setTrackIndex] = useState(0);
@@ -83,7 +84,7 @@ const Player = ({ tracks }) => {
   }, []);
 
   useEffect(() => {
-    console.log(volume);
+    console.log(duration);
   }, [volume]);
 
   return (
@@ -113,23 +114,27 @@ const Player = ({ tracks }) => {
         <div className="info">
           <img className="cover" src={cover.url} alt="track cover" />
           <div className="labels">
-            {/* <h2 className="title">{title}</h2>
-            <h2 className="author">{author}</h2> */}
+            <h2 className="title">{title}</h2>
+            <h2 className="author">{author}</h2>
           </div>
         </div>
-
-        {/* <input
-          type="range"
-          value={volume}
-          step="0.01"
-          min="0"
-          max="1"
-          className="volume"
-          onChange={(e) => {
-            setVolume(e.target.value);
-            audioRef.current.volume = e.target.value;
-          }}
-        /> */}
+        <div className="volume-icon-container">
+          <IoVolumeHighSharp className="center" size="30px" />
+        </div>
+        <div className="volume-container">
+          <input
+            type="range"
+            value={volume}
+            step="0.01"
+            min="0"
+            max="1"
+            className="volume center"
+            onChange={(e) => {
+              setVolume(e.target.value);
+              audioRef.current.volume = e.target.value;
+            }}
+          />
+        </div>
       </div>
     </div>
   );
